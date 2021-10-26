@@ -1,0 +1,14 @@
+{
+  "presets": [
+    "@babel/typescript",
+    "@babel/preset-env",
+    "@babel/preset-react",
+    "@emotion/babel-preset-css-prop"
+  ],
+  "env": {
+    "test": {
+      "plugins": ["require-context-hook"]
+    }
+  },
+  "plugins": ["react-hot-loader/babel", "@emotion"]
+}
