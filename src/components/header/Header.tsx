@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { AppBar, Box, Container, IconButton, Link, Slide, Toolbar, Typography, useScrollTrigger } from '@mui/material';
 import { Link as RouterLink } from "react-router-dom";
 import { WithTranslation, withTranslation } from 'react-i18next';
-import { HeaderMenuSub, HeadMenuItem, Layer2Item, TabItemPlus } from './basic-lib';
+import { HeaderMenuSub, HeadMenuItem, Layer2Item, TabItemPlus } from 'components/basic-lib';
 import { HeaderProps, HeaderToolBarInterface } from './Interface';
 import {
     // ammDisableList,
@@ -14,6 +14,7 @@ import {
 } from 'common-resources';
 import {  BtnTheme,BtnLanguage } from './toolbar';
 import React from 'react';
+import { useSettings } from '../../stores';
 const logoSVG = SoursURL+'svg/logo.svg'
 const ToolBarStyled = styled(Toolbar)`
   && {
@@ -94,32 +95,33 @@ const LogoStyle = styled(Typography)`
   }
 ` as typeof Typography
 
-export const LoopringLogo = React.memo(() => {
+export const Logo = React.memo(({t}:WithTranslation) => {
     // const history = useHistory();
     // const url = history.push('/main').
-    return <LogoStyle variant="h6" component="h1" marginRight={4}>
-        <IconButton edge="start" aria-label="menu" component={RouterLink} to={'/landing-page'} color={"inherit"}>
-            Loopring 路印
-            loopring protocol 3.6
-            The first Layer2 Decentralized trading Platform
-        </IconButton>
-    </LogoStyle>
+    return  <Typography variant={'h3'} component={'h1'} display={'inline-flex'} alignItems={'center'}>{t('labelWhereInTheWorld')}</Typography>
+    // <LogoStyle variant="h6" component="h1" marginRight={4}>
+    //     <IconButton edge="start" aria-label="menu" component={RouterLink} to={'/landing-page'} color={"inherit"}>
+    //         Loopring 路印
+    //         loopring protocol 3.6
+    //         The first Layer2 Decentralized trading Platform
+    //     </IconButton>
+    // </LogoStyle>
 });
 
 const ToolBarItem = ({buttonComponent, ...props}: any) => {
-
+    const {themeMode, language} = useSettings()
     const render = React.useMemo(() => {
         switch (buttonComponent) {
-            case  ButtonComponentsMap.Download:
-                return <BtnDownload {...props} />;
-            case  ButtonComponentsMap.Notification:
-                return <BtnNotification {...props} />;
+            // case  ButtonComponentsMap.Download:
+            //     return <BtnDownload {...props} />;
+            // case  ButtonComponentsMap.Notification:
+            //     return <BtnNotification {...props} />;
             // case  ButtonComponentsMap.Setting:
             //     return <BtnSetting {...props} />;
-            // // case  ButtonComponentsMap.Theme:
-            // //     return <BtnTheme {...{...props, themeMode}} />;
-            // // case  ButtonComponentsMap.Language:
-            // //     return <BtnLanguage {...{...props, language}} />;
+            case  ButtonComponentsMap.Theme:
+                return <BtnTheme {...{...props, themeMode}} />;
+            case  ButtonComponentsMap.Language:
+                return <BtnLanguage {...{...props, language}} />;
             // case  ButtonComponentsMap.WalletConnect:
             //     return <WalletConnectBtn {...props} />;
             default:
@@ -155,10 +157,10 @@ export const HideOnScroll = React.forwardRef(({children, window, ...rest}: any, 
 // },[allowTrade.order.enable])
 
 
-export const Header = withTranslation(['layout', 'common'], {withRef: true})(React.forwardRef(({
+export const Header = withTranslation(['common'], {withRef: true})(React.forwardRef(({
                                                                                                    headerMenuData,
                                                                                                    headerToolBarData,
-                                                                                                   allowTrade,
+                                                                                                   allowTrade = {},
                                                                                                    selected,
                                                                                                    isWrap = true,
                                                                                                    i18n,
@@ -234,18 +236,11 @@ export const Header = withTranslation(['layout', 'common'], {withRef: true})(Rea
             <ToolBarStyled>
                 <Box display="flex" alignContent="center" justifyContent={"flex-start"}
                      alignItems={"stretch"}>
-                    <LoopringLogo/>
+                    <Logo  i18n={i18n}  {...rest} />
                     {getDrawerChoices({menuList: headerMenuData, i18n, ...rest})}
                 </Box>
                 <Box component={'ul'} display="flex" alignItems="center" justifyContent={"flex-end"}
                      color={'textColorSecondary'}>
-                    {/*<Button variant={'text'} size={'small'} to={'https:v1.loopring.io'}>*/}
-                    {/*   <Typography variant={'body1'}>Switch to V1</Typography>*/}
-                    {/*</Button>*/}
-                    <LinkStyle variant={'body2'} href={'https://legacy.loopring.io/'}>
-                        Switch to Legacy
-                        {/*<Typography  color={'text.Secondary'}></Typography>*/}
-                    </LinkStyle>
                     {getMenuButtons({toolbarList: headerToolBarData, i18n, ...rest})}
                 </Box>
             </ToolBarStyled>

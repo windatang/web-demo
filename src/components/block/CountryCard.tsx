@@ -9,7 +9,7 @@ const CardStyle = styled(Card)`
   cursor: pointer;
   height: 0;
   padding: 0;
-  padding-bottom: calc(100% + 80px);
+  padding-bottom: calc(60% + 80px);
   position: relative;
 
   img {
@@ -27,27 +27,40 @@ const BoxNFT = styled(Box)`
   }
 ` as typeof Box
 
-const CountryCard = withTranslation(['common'])(({t, onDetail,item, ...rest} & CountryCardProps & WithTranslation)=>{
-    <Grid item xs={12} md={6} lg={4} flex={'1 1 120%'}>
+//flex={'1 1 120%'}  className={'MuiPaper-elevation2'}
+export const CountryCard = withTranslation(['common'])(({t, onDetail,item, ...rest} : CountryCardProps & WithTranslation)=>{
+  return  <Grid item xs={12} md={6} lg={4}  >
         <CardStyle sx={{maxWidth: 345}}  onClick={() => {
             onDetail(item)
         }}>
             <Box position={'absolute'}
-                 width={'100%'} height={'100%'} display={'flex'} flexDirection={'column'}
+                 width={'100%'}  display={'flex'} flexDirection={'column'}
                  justifyContent={'space-between'}>
                 <Box flex={1} style={{background: "var(--field-opacity)"}} display={'flex'}
                      alignItems={'center'}
                      justifyContent={'center'}>
-                    <img src={'http://static.loopring.io/assets/images/vips/SUPERVIP.png'}/></Box>
-                <Box padding={2} height={80}>
+                    <img src={item.flags?.svg} width={'100%'} height={'100%'}/>
+                </Box>
+                <Box paddingX={3}   display={'flex'} flexDirection={'column'}>
                     <Typography
-                        color={'text.secondary'}
-                        component={'h6'}>{item.name}</Typography>
-                    <Typography color={'--color-text-primary'} component={'p'}>
-                        ID: #{item.id}
+                        color={'textPrimary'}
+                        variant={'h4'}
+                        component={'h3'} marginY={3}>{item.name.common}</Typography>
+
+                    <Typography color={'--color-text-primary'} component={'p'} display={'inline-flex'} marginBottom={1}>
+                       <Typography color={'textPrimary'}>{t('labelPopulation')}: </Typography>
+                       <Typography color={'textSecondary'} paddingLeft={1}>{item.population.toLocaleString('en')}</Typography>
+                    </Typography>
+                    <Typography color={'--color-text-primary'} component={'p'} display={'inline-flex'}  marginBottom={1}>
+                        <Typography color={'textPrimary'}>{t('labelRegion')}: </Typography>
+                        <Typography color={'textSecondary'} paddingLeft={1}>{item.region}</Typography>
+                    </Typography>
+                    <Typography color={'--color-text-primary'} component={'p'} display={'inline-flex'} marginY={1/2}>
+                        <Typography color={'textPrimary'}>{t('labelCapital')}: </Typography>
+                        <Typography color={'textSecondary'} paddingLeft={1}>{item.capital[0]}</Typography>
                     </Typography>
                 </Box>
             </Box>
         </CardStyle>
     </Grid>
-})
+} )

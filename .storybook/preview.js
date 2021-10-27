@@ -20,8 +20,8 @@ export const parameters = {
   backgrounds: {
     default: 'dark',
     values: [
-      {name: 'dark', value: '#14172C'},
-      {name: 'light', value: '#ffffff'},
+      {name: 'dark', value: 'hsl(207, 26%, 17%)'},
+      {name: 'light', value: 'hsl(0, 0%, 98%)'},
     ],
   },
 }
@@ -70,8 +70,8 @@ export const decorators = [
     return <ProviderComposer providers={[
       // provider(LocalizationProvider, {dateAdapter: DateAdapter}),
       provider(I18nextProvider, {i18n: i18n}),
-      provider(MuThemeProvider, {theme: theme}),
-      provider(ThemeProvider, {theme: theme}),
+      provider(MuThemeProvider, {theme: getTheme(themeMode)}),
+      provider(ThemeProvider, {theme: getTheme(themeMode)}),
       provider(Provider, {store}),
     ]}>
       <style type="text/css">

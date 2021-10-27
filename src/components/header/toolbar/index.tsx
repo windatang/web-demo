@@ -1,25 +1,34 @@
-import { IconButton, SelectChangeEvent, } from '@mui/material';
+import { IconButton, SelectChangeEvent, Typography, } from '@mui/material';
 // import {
 //      SettingIcon,
 //
 // } from 'common-resources';
-import { bindHover, usePopupState } from 'material-ui-popup-state/hooks';
 import { useSettings } from 'stores';
 import React from 'react';
 import { DropDownIcon, i18n, LanguageType, ThemeDarkIcon, ThemeLightIcon, ThemeType } from 'common-resources';
 import { OutlineSelect, OutlineSelectItem } from 'components/basic-lib';
 
 export const BtnTheme = ({t, handleClick}: any) => {
-    const {themeMode} = useSettings()
-    //const [mode, setMode] = React.useState(themeMode)
-    const _handleClick = React.useCallback(() => {
-        // setMode(mode === ThemeType.dark ? ThemeType.light : ThemeType.dark)
-        if (handleClick) {
-            handleClick(themeMode)
+    const {themeMode, setTheme} = useSettings()
+    // const [mode, setMode] = React.useState(themeMode)
+    // const _handleClick = React.useCallback(() => {
+    //     setMode(mode === ThemeType.dark ? ThemeType.light : ThemeType.dark)
+    //     if (handleClick) {
+    //         handleClick(themeMode)
+    //     }
+    // }, [themeMode, handleClick])
+    const handleThemeClick = React.useCallback((e: any) => {
+
+        if (themeMode === ThemeType.light) {
+            setTheme(ThemeType.dark);
+        } else {
+            setTheme(ThemeType.light);
         }
-    }, [themeMode, handleClick])
-    return <IconButton aria-label={t('change theme')} onClick={_handleClick}>
+    }, [themeMode])
+    return <Typography onClick={handleThemeClick} display={'inline-flex'} alignItems={'center'}><IconButton aria-label={t('change theme')} >
         {themeMode === ThemeType.dark ? <ThemeDarkIcon/> : <ThemeLightIcon/>}</IconButton>
+        <Typography paddingLeft={1} color={'textSecondary'}>{t('labelThemeMode',{mode:themeMode === ThemeType.dark?'Dark':'Light'})}</Typography>
+    </Typography>
 }
 
 
