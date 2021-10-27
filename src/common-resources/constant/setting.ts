@@ -8,10 +8,11 @@ export enum UpColor {
 //     yen = 'CNY',
 // }
 
-export const SlippageTolerance: Array<0.1 | 0.5 | 1 | string> = [0.1, 0.5, 1];
+// export const SlippageTolerance: Array<0.1 | 0.5 | 1 | string> = [0.1, 0.5, 1];
 export const RowConfig = {
     rowHeight:44,
     rowHeaderHeight:44,
 }
-export const FeeChargeOrderDefault = ['ETH','USDT','LRC','DAI','USDC'];
+// export const FeeChargeOrderDefault = ['ETH','USDT','LRC','DAI','USDC'];
 export const IubendaID = 74969935;
+export const Region = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
