@@ -22,36 +22,31 @@ if (process.env.REACT_APP_VER) {
     console.log('VER:', process.env.REACT_APP_VER)
 }
 
-// const ProviderApp = React.memo(({children}: { children: JSX.Element }) => {
-//     const providers: Array<[TProvider<any>, any]> = [
-//         provider(Provider as any, {store}),
-//         // provider(LocalizationProvider as any, {dateAdapter: MomentUtils}),
-//         provider(I18nextProvider as any, {i18n: i18n}),
-//     ] as any
-//     return <ProviderComposer providers={providers}>{children}</ProviderComposer>
-// })
-// const ProviderThen = React.memo(({children}: { children: JSX.Element }) => {
-//     const {themeMode} = useSettings();
-//     const providers: Array<[TProvider<any>, any]> = [
-//         provider(MuThemeProvider as any, {theme: getTheme(themeMode)}),
-//         provider(ThemeProvider as any, {theme: getTheme(themeMode)}),
-//         // provider(PersistGate as any, {persistor, loading: null}),
-//         // provider(TimeoutCheckProvider as any),
-//     ] as any
-//     return <ProviderComposer providers={providers}>{children}</ProviderComposer>
-// })
+const ProviderApp = React.memo(({children}: { children: JSX.Element }) => {
+    const providers: Array<[TProvider<any>, any]> = [
+        provider(Provider as any, {store}),
+        // provider(LocalizationProvider as any, {dateAdapter: MomentUtils}),
+        provider(I18nextProvider as any, {i18n: i18n}),
+    ] as any
+    return <ProviderComposer providers={providers}>{children}</ProviderComposer>
+})
+const ProviderThen = React.memo(({children}: { children: JSX.Element }) => {
+    const {themeMode} = useSettings();
+    const providers: Array<[TProvider<any>, any]> = [
+        provider(MuThemeProvider as any, {theme: getTheme(themeMode)}),
+        provider(ThemeProvider as any, {theme: getTheme(themeMode)}),
+        // provider(PersistGate as any, {persistor, loading: null}),
+        // provider(TimeoutCheckProvider as any),
+    ] as any
+    return <ProviderComposer providers={providers}>{children}</ProviderComposer>
+})
 
 ReactDOM.render(
-    <ProviderComposer providers={[
-        // provider(LocalizationProvider, {dateAdapter: DateAdapter}),
-        provider(Provider as any, {store}),
-        provider(I18nextProvider as any, {i18n: i18n}),
-        provider(MuThemeProvider as any, {theme: getTheme(store.getState().settings.themeMode)}),
-        provider(ThemeProvider as any,  {theme: getTheme(store.getState().settings.themeMode)}),
-
-    ] as any[]}>
-        <App/>
-    </ProviderComposer>,
+    <ProviderApp>
+        <ProviderThen>
+            <App/>
+        </ProviderThen>
+    </ProviderApp>,
     document.getElementById('root')
 )
 

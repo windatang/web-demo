@@ -9,6 +9,7 @@
       "es2017"
     ],
     "allowJs": true,
+    "jsxImportSource": "@emotion/react",
     "sourceMap": true,
     "composite": true,
     "keyofStringsOnly": true,

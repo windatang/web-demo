@@ -9,7 +9,7 @@ const CardStyle = styled(Card)`
   cursor: pointer;
   height: 0;
   padding: 0;
-  padding-bottom: calc(60% + 80px);
+  padding-bottom: calc(100% + 80px);
   position: relative;
 
   img {
@@ -30,7 +30,7 @@ const BoxNFT = styled(Box)`
 //flex={'1 1 120%'}  className={'MuiPaper-elevation2'}
 export const CountryCard = withTranslation(['common'])(({t, onDetail,item, ...rest} : CountryCardProps & WithTranslation)=>{
   return  <Grid item xs={12} md={6} lg={4}  >
-        <CardStyle sx={{maxWidth: 345}}  onClick={() => {
+        <CardStyle sx={{minWidth: 345}}   onClick={() => {
             onDetail(item)
         }}>
             <Box position={'absolute'}
@@ -57,7 +57,7 @@ export const CountryCard = withTranslation(['common'])(({t, onDetail,item, ...re
                     </Typography>
                     <Typography color={'--color-text-primary'} component={'p'} display={'inline-flex'} marginY={1/2}>
                         <Typography color={'textPrimary'}>{t('labelCapital')}: </Typography>
-                        <Typography color={'textSecondary'} paddingLeft={1}>{item.capital[0]}</Typography>
+                        <Typography color={'textSecondary'} paddingLeft={1}>{item.capital?.length&&item.capital[0]}</Typography>
                     </Typography>
                 </Box>
             </Box>

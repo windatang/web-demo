@@ -70,7 +70,7 @@ export const CountryDetail = withTranslation('common')(React.memo(({
                                                                    }: CountryCardDetail & WithTranslation) => {
     return <>
         <Grid item xs={1} md={6} lg={4}>
-            <BoxDetail display={'flex'} width={570} height={570} margin={1} marginTop={-4} alignItems={'center'}
+            <BoxDetail display={'flex'} maxWidth={570} minWidth={400} margin={1} marginTop={-4} alignItems={'center'}
                        justifyContent={'center'}>
                 <img src={item.flags?.svg} width={'100%'} height={'100%'}/>
             </BoxDetail>
@@ -126,7 +126,7 @@ export const CountryDetail = withTranslation('common')(React.memo(({
                         <Typography color={'textPrimary'}>{t('labelBorderCountry')}: </Typography>
                         <Box display={'flex'} flexDirection={'row'} alignItems={'center'} marginLeft={2}>
                             {item.borders.map((item, index) => {
-                                return <BtnBorders key={item + index} simple={item}/>
+                                return <Typography key={item + index} marginLeft={2}><BtnBorders  simple={item}/></Typography>
                             })}
 
                         </Box>

@@ -5,12 +5,14 @@ import { Region, RegionList } from '../../../common-resources';
 
 const getCountryApi = async <R extends { [ key: string ]: any }>(list: Array<keyof R>) => {
     //https://restcountries.com/v3.1/all
+
     const countryList= await fetch('https://restcountries.com/v3.1/all').then(results => results.json());
     // let cca3Map  = {};
     let region:{[key:string]:Country[]} = RegionList.reduce((pre,item)=> {
         return {...pre,[item]:[]}
     },{});
-    const listMap = countryList.reducer((pre:any,item:any)=>{
+    
+    const listMap = countryList.reduce((pre:any,item:any)=>{
         pre.cca3Map =  {...pre.cca3Map,[item.cca3]:item} ;
         pre.countryMap=  {...pre.countryMap,[item.name.common]:item} ;
         switch (item.region){

@@ -115,19 +115,17 @@ const StyledLayer2Item = styled(MenuItem)<MenuItemProps<any>>`
 ` as typeof MenuItem;
 
 
-
-// @ts-ignore
-const StyledHeaderMenuSub = styled(Menu)<MenuProps>`
-  color: var(--color-text-third);
-  ul {
-
-    background: var(--color-pop-bg);
-    padding: 0;
-    //.layer-sub {
-    //  height: var(--header-menu-list-height)
-    //}
-  }
-` as typeof Menu;
+// const StyledHeaderMenuSub = styled(Menu)<MenuProps>`
+//   color: var(--color-text-third);
+//   ul {
+//
+//     background: var(--color-pop-bg);
+//     padding: 0;
+//     //.layer-sub {
+//     //  height: var(--header-menu-list-height)
+//     //}
+//   }
+// ` as typeof Menu;
 const StyledTabBtn = styled(MenuItem)<MenuItemProps<any>>`
   &.Mui-selected, &.Mui-selected.Mui-focusVisible {
     background: inherit;
@@ -237,14 +235,14 @@ export const HeaderMenuSub = React.memo(React.forwardRef(<I extends BasicHeaderI
                 <ListItemAvatar color={'inherit'} style={{display: 'inline-flex', alignItems: 'center'}}><DropDownIcon
                     fontSize={'medium'}/></ListItemAvatar>
             </StyledTabBtn>
-            <StyledHeaderMenuSub key={`menu-${layer}-${label.id}`}
+            <Menu key={`menu-${layer}-${label.id}`}
                                  {...bindMenu(popupState)}
                 // getContentAnchorEl={null}
                                  anchorOrigin={{vertical: 'bottom', horizontal: 'left'}}
                                  transformOrigin={{vertical: 'top', horizontal: 'left'}}
                                  className={`MuiPaper-elevation2 menu-${layer}-${label.id}`}>
                 {renderList && renderList({handleListKeyDown: popupState.close})}
-            </StyledHeaderMenuSub>
+            </Menu>
         </>} </>
 })) as <I extends BasicHeaderItem> (props: HeadMenuType<I> & WithTranslation & RefAttributes<any>) => JSX.Element;
 

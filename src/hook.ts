@@ -18,9 +18,10 @@ import { useCountry } from './stores';
 export function useInit() {
     const [state, setState] = React.useState<keyof typeof SagaStatus>('PENDING')
 
-    const {status: countryStatus, statusUnset: countryUnset} = useCountry();
-
-
+    const {status: countryStatus, statusUnset: countryUnset,getCountry} = useCountry();
+    React.useEffect(()=>{
+        getCountry()
+    },[])
     React.useEffect(() => {
         switch (countryStatus) {
             case SagaStatus.PENDING:

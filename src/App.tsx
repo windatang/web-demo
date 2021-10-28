@@ -32,9 +32,7 @@ const App = () => {
   }, [])
 
   const {state} = useInit();
-
-
-  return <><GlobalStyles styles={css`
+  const GlobalStyle =  React.useMemo(()=><GlobalStyles styles={css`
       ${globalCss({theme})};
 
       body {
@@ -48,8 +46,10 @@ const App = () => {
             background: var(--color-global-bg);
        ` : ''}
       }
-    }`}/>
+    }`}/>,[theme])
 
+  return <>
+    {GlobalStyle}
     <Router>
 
       <ScrollToTop/>
