@@ -3,7 +3,7 @@ import { Meta, Story } from '@storybook/react/types-6-0'
 
 import { Box, Breadcrumbs, Grid, Pagination, Typography, Link } from '@mui/material'
 import { ButtonProps, TGItemData, TGItemJSXInterface } from './Interface';
-import { BtnPercentage, Button, LinkActionStyle, ModalCloseButton, ToggleButtonGroup } from './index'
+import {  Button, LinkActionStyle, ModalCloseButton, ToggleButtonGroup } from './index'
 import { Switch } from '@mui/material';
 import { WithTranslation, withTranslation } from "react-i18next";
 import styled from "@emotion/styled";
@@ -159,12 +159,12 @@ export const LButton: Story<ButtonProps> = withTranslation()(({t, ...rest}: With
                     </Grid>
                     <h4>Percentage selector</h4>
                     <Grid item marginY={1}>
-                        <BtnPercentage selected={selected} handleChanged={(value: any) => {
-                            console.log(value)
-                            setSelected(value)
-                        }
+                        {/*<BtnPercentage selected={selected} handleChanged={(value: any) => {*/}
+                        {/*    console.log(value)*/}
+                        {/*    setSelected(value)*/}
+                        {/*}*/}
 
-                        }/>
+                        {/*}/>*/}
                         {/*<BtnPercentageDraggable selected={selected} maxValue={'Available:1001.111'} handleChanged={(value: any) => {*/}
 
                         {/*    console.log(value)*/}

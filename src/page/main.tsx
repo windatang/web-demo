@@ -1,35 +1,13 @@
-import styled from '@emotion/styled';
-import { Meta, Story } from '@storybook/react/types-6-0';
-import { MemoryRouter, useHistory } from 'react-router-dom';
-import {
-    Box,
-    Container,
-    CssBaseline,
-    FormControl,
-    GlobalStyles,
-    Grid, InputLabel,
-    Paper, Select,
-    SelectChangeEvent,
-    Toolbar,
-} from '@mui/material';
-import { css, Theme, useTheme } from '@emotion/react';
-
-import { WithTranslation, withTranslation } from 'react-i18next';
+import { withTranslation, WithTranslation } from 'react-i18next';
+import { Grid,FormControl,InputLabel, Select,SelectChangeEvent } from '@mui/material';
+import { useHistory } from 'react-router-dom';
+import { Button, CountryCard, CountryDetail, InputSearch, MenuItem } from '../components';
 import React from 'react';
+import * as _ from 'lodash'
+import { Country, useCountry } from '../stores';
+import { Region, RegionList } from '../common-resources';
 
-import { Typography } from '@mui/material';
-import { globalCss, headerToolBarData, Region, RegionList } from 'common-resources';
-import { Header, HideOnScroll } from '../header';
-import { Country, useCountry } from '../../stores';
-import * as _ from 'lodash';
-import { InputSearch, MenuItem } from '../basic-lib';
-import { CountryCard } from '../block';
-
-
-const Style = styled.div`
-  
-`
-export const MainPageWrap = withTranslation('common')(({t}:& WithTranslation)=>{
+export const MainPage = withTranslation('common')(({t}:& WithTranslation)=>{
     const {countryList,region:regionMap} = useCountry();
     const [region, setRegion] = React.useState<Region|'All'>('All');
     const history = useHistory()
@@ -54,7 +32,9 @@ export const MainPageWrap = withTranslation('common')(({t}:& WithTranslation)=>{
         <Grid container>
             <Grid item xs={12} md={6}>
                 <InputSearch value={searchValue} placeholder={t('labelSearchForCountry')} onChange={handleSearchChange}
-                />
+            />
+
+                 <InputSearch  onChange={()=>{}} />
             </Grid>
             <Grid item xs={12} md={6}>
                 <FormControl fullWidth>
@@ -63,12 +43,12 @@ export const MainPageWrap = withTranslation('common')(({t}:& WithTranslation)=>{
                         // native={}
                         labelId="select-label"
                         value={region}
-                        // label="Age"
+                        label="Age"
                         onChange={handlerRegionChange}
                     >
                         <MenuItem value={'All'} >All</MenuItem>
                         {RegionList.map((item)=>{
-                            return   <MenuItem value={item} key={item}>{item}</MenuItem>
+                          return   <MenuItem value={item} key={item}>{item}</MenuItem>
                         },[])}
                         {/*<MenuItem value={10}>Ten</MenuItem>*/}
                         {/*<MenuItem value={20}>Twenty</MenuItem>*/}
@@ -95,53 +75,3 @@ export const MainPageWrap = withTranslation('common')(({t}:& WithTranslation)=>{
 
     </>
 })
-const Layer2Wrap = withTranslation('common')(({t,...rest}:any) => {
-    // const _headerMenuData: List<HeaderMenuItemInterface> = headerMenuData as List<HeaderMenuItemInterface>;
-    // const _headerToolBarData: List<HeaderToolBarInterface> = headerToolBarData as List<HeaderToolBarInterface>;
-
-
-    return <>
-        <CssBaseline />
-        <HideOnScroll>
-            <Header headerMenuData={[]}  headerToolBarData={headerToolBarData} selected={''}/>
-        </HideOnScroll>
-        <Toolbar/>
-        <Container maxWidth="lg">
-            {/*style={{height: '100%' }}*/}
-            <MainPageWrap/>
-        </Container>
-        {/*<Footer></Footer>*/}
-    </>
-})
-
-const Template: Story<any> = () => {
-    const theme: Theme = useTheme();
-    console.log(theme.mode)
-    return <> <MemoryRouter initialEntries={['/']}><GlobalStyles styles={css`
-  ${globalCss({theme})};
-
-  body:before {
-    ${theme.mode === 'dark' ? `
-            color: ${theme.colorBase.textPrimary};        
-           
-            background: var(--color-global-bg);
-       ` : ''}
-  }
-}
-`}/>
-        <Style>
-            <Layer2Wrap/>
-        </Style>
-    </MemoryRouter>
-    </>
-};
-
-export default {
-    title: 'components/Layout/Layer2',
-    component: Layer2Wrap,
-    argTypes: {},
-} as Meta
-
-export const Layer2Story = Template.bind({});
-// SwitchPanel.args = {}
-

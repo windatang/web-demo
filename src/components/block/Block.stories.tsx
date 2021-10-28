@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { Meta, Story } from '@storybook/react/types-6-0';
 
 import { withTranslation } from 'react-i18next';
-
+import { Grid,Typography } from '@mui/material';
 import React from 'react';
 import { CountryCard } from './CountryCard';
 import { CountryDetail } from './CountryDetail';
@@ -90,9 +90,24 @@ const CountryCardWrap = () => {
         "capitalInfo": {"latlng": [3.17, 101.7]},
         "postalCode": {"format": "#####", "regex": "^(\\d{5})$"}
     }
-    return <><CountryCard item={item} onDetail={() => {
-    }}/>
-        <CountryDetail  item={item}/>
+    return <>
+        <Grid container>
+        <Grid item xs={12}>
+            <Typography
+                color={'textPrimary'}
+                variant={'h4'}
+                component={'h3'} marginY={3}>{'Card'}</Typography>
+            <CountryCard item={item} onDetail={() => {
+            }}/>
+        </Grid>
+        <Grid item xs={12}>
+            <Typography
+                color={'textPrimary'}
+                variant={'h4'}
+                component={'h3'} marginY={3}>{'Detail'}</Typography>
+            <CountryDetail  item={item}/>
+        </Grid>
+        </Grid>
     </>
 }
 

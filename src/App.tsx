@@ -2,9 +2,12 @@ import React from 'react';
 import { css, Theme, useTheme } from '@emotion/react';
 import { useTranslation } from 'react-i18next';
 import store, { setLanguage } from './stores';
-import { Router, useLocation } from 'react-router-dom';
+import { HashRouter as Router, useLocation } from 'react-router-dom';
 import { GlobalStyles } from '@mui/material';
 import { globalCss } from './common-resources';
+import RouterView from 'routers';
+import { useInit } from 'hook';
+
 // import logo from './logo.svg';
 
 const ScrollToTop = () => {
@@ -48,6 +51,7 @@ const App = () => {
     }`}/>
 
     <Router>
+
       <ScrollToTop/>
       <RouterView state={state}/>
     </Router>

@@ -5,7 +5,7 @@ import {
     setTheme,
 } from './reducer'
 import { PlatFormType, SettingsState } from "./interface";
-import { LanguageKeys, LanguageType, ThemeKeys, ThemeType, UpColor } from 'common-resources';
+import { LanguageKeys, LanguageType, ThemeKeys, ThemeType } from 'common-resources';
 import React from 'react';
 
 export function useSettings(): SettingsState & {

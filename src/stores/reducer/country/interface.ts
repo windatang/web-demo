@@ -1,4 +1,4 @@
-import { StateBase } from 'common-resources';
+import { Region, StateBase } from 'common-resources';
 
 export type Country = {
     name: {
@@ -26,8 +26,10 @@ export type Country = {
     [ key: string ]: any
 };
 export type CountryStates = {
-    countryList?: Country[] | undefined
-    __timer__: NodeJS.Timeout | -1
+    countryList?: Country[] | undefined,
+    cca3Map:{[key:string]:Country},
+    region:{[key in Region]:Country[]},
+    countryMap: {[key:string]:Country},
 } & StateBase
 
 

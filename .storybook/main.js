@@ -51,7 +51,6 @@ module.exports = {
     const modules = [
       ...config.resolve.modules,
       path.resolve(__dirname, "..", "src"),
-      // "node_modules/@loopring-web/common-resources",
       //static-resources/src/loopring-interface/CoinInterface.ts
       // path.resolve(__dirname, '..', '..', 'common-resources', "static-resources"),
       // path.resolve(__dirname,'./'),

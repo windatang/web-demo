@@ -15,10 +15,6 @@
 //     // ],
 //     alias: {
 //       ...config.resolve.alias,
-//       //"@loopring-web/static-resource" : path.resolve(__dirname, '..', 'src/static-resource'),
-//       //toPath("node_modules/@loopring-web/static-resource"),
-//       //path.resolve(__dirname, '..', 'node_modules/@loopring-web/static-resource'),
-//       // "@loopring-web/static-resource":path.resolve(__dirname, '..', 'node_modules/@loopring-web/static-resource'),
 //       "@emotion/core": toPath("node_modules/@emotion/react"),
 //       "@material-ui/core": toPath("node_modules/@mui/material"),
 //       "emotion-theming": toPath("node_modules/@emotion/react"),

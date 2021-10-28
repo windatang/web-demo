@@ -14,11 +14,13 @@ const CloseIconStyled = styled(ErrorIcon)`
 
 export type InputSearchProps  = {
     value?: string;
+    placeholder?:string
     // onChange?: (value: string) => void;
 } & OutlinedInputProps
 
 export const InputSearch =  React.forwardRef(({
     value,
+    placeholder = 'Search',
     onChange,
     ...rest
 }: InputSearchProps , _ref: React.ForwardedRef<any>) => {
@@ -26,7 +28,7 @@ export const InputSearch =  React.forwardRef(({
         {...{...rest}}
         className={'search'}
         aria-label={'search'}
-        placeholder={'Search'}
+        placeholder={placeholder}
         value={value}
         onChange={(event: any) => {
             if (onChange) {

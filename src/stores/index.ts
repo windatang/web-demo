@@ -1,7 +1,9 @@
 import { countryListSlice } from './reducer/country';
 
 
-import { CombinedState, combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import {
+    // CombinedState,
+    combineReducers, configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 
 import { useDispatch } from 'react-redux'
 
@@ -19,7 +21,7 @@ import { setLanguage, settingsSlice } from './reducer/settings';
 
 const sagaMiddleware = createSagaMiddleware()
 
-const DEFAULT_TIMEOUT = 1000 * 60 * 15
+const DEFAULT_TIMEOUT = 15000 * 60 * 15
 
 
 //

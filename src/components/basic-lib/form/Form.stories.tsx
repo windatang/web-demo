@@ -12,8 +12,6 @@ import {
 // import {  MenuItem, OutlineSelect, OutlineSelectItem } from '../../basic-lib'
 import { withTranslation } from "react-i18next";
 import {
-    InputButtonProps,
-    InputSelectProps,
     TextField,
     InputSearch,
     IconClearStyled

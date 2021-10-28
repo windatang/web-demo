@@ -51,7 +51,7 @@ export const decorators = [
     store.dispatch(setLanguage(locale));
     store.dispatch(setTheme(themeMode));
     // store.dispatch(imageConfig)
-    const theme = getTheme(store.getState().settings.themeMode);
+    // const theme = getTheme(store.getState().settings.themeMode);
 
     // store.dispatch(setCoinJson(imgConfig.frames))
 
@@ -80,7 +80,7 @@ export const decorators = [
           }
         `}
       </style>
-      <GlobalStyles styles={globalCss({theme})}></GlobalStyles>
+      <GlobalStyles styles={globalCss({theme:getTheme(themeMode)})}></GlobalStyles>
       <Story {...{context}} > </Story>
     </ProviderComposer>
 

@@ -11,7 +11,7 @@ export const hexToRGB = (hex:string, alpha?:string|number)=> {
 }
 
 export const ColorDarkDefault = Object.freeze({
-    primary: '#4169FF',
+    primary: 'hsl(209, 23%, 22%)',
     primaryHover: `${hexToRGB('#ffffff', '0.2')}`,
     primaryPressed: '#2D49B2',
     secondary: '#1890FF',
@@ -66,7 +66,7 @@ export const ColorDarkDefault = Object.freeze({
     providerApprove:`${hexToRGB('#ffffff', '0.03')}`,
 })
 export const ColorLightDefault = Object.freeze({...ColorDarkDefault,
-    primary: '#3B5AF4',
+    primary: 'hsl(209, 23%, 22%)',
     primaryHover: `${hexToRGB('#ffffff', '0.2')}`,
     primaryPressed: '#293EAA',
     secondary: '#1890FF',

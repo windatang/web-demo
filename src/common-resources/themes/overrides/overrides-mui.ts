@@ -236,7 +236,7 @@ export const MuiButton = ({colorBase}: any): { styleOverrides: ComponentsOverrid
                 },
                 fontFamily: 'Roboto',
                 fontSize: pxToRem(14),
-                borderRadius: pxToRem(4),
+                borderRadius: pxToRem(2),
                 fontWeight: 'normal',
                 paddingLeft: pxToRem(12),
                 paddingRight: pxToRem(12),
@@ -265,9 +265,9 @@ export const MuiButton = ({colorBase}: any): { styleOverrides: ComponentsOverrid
                 color: colorBase.textButton,
                 height: pxToRem(40),
                 fontSize: pxToRem(14),
-                boxShadow: 'initial',
+                // boxShadow: 'initial',
                 '&:hover': {
-                    boxShadow: 'initial',
+                    // boxShadow: 'initial',
                     '&:before':{
                         background: colorBase.primaryHover,
                         content:'\'\'',

@@ -11,4 +11,6 @@ export default {
     labelCurrencies: 'Currencies',
     labelLanguages:'Languages',
     labelBorderCountry: 'Border Country',
+    labelSearchForCountry: 'Search for a country?',
+    labelBack:'Back'
 }

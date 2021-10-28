@@ -1,13 +1,13 @@
 import { Container, ListItemAvatar, MenuItem, MenuProps, Typography } from '@mui/material';
 import { WithTranslation } from "react-i18next";
 import { bindHover, bindMenu, usePopupState } from "material-ui-popup-state/hooks";
-import { BasicHeaderItem, HeadMenuType, MenuItemLink, MenuItemProps } from './Interface'
 import styled from "@emotion/styled";
 import clsx from "clsx";
-import { ammDisableList, DropDownIcon, orderDisableList } from 'common-resources';
+import {  DropDownIcon } from 'common-resources';
 import Menu from 'material-ui-popup-state/HoverMenu';
 import React, { ForwardedRef, RefAttributes } from "react";
 import { useHistory } from 'react-router-dom';
+import { BasicHeaderItem, HeadMenuType, MenuItemLink,MenuItemProps } from './Interface';
 // import Popover from 'material-ui-popup-state/HoverPopover';
 // background-color: ${theme.colorBase.primaryLight};
 
@@ -115,21 +115,19 @@ const StyledLayer2Item = styled(MenuItem)<MenuItemProps<any>>`
 ` as typeof MenuItem;
 
 
-const StyledHeaderMenuSub = styled(Menu)<MenuProps>`
- 
-  && {
-    color: var(--color-text-third);
-    ul {
-      ${({theme}) => theme.border.defaultFrame({c_key: 'var(--opacity)', d_R: 0.5})};
-      background: var(--color-pop-bg);
-      padding: 0;
-      //.layer-sub {
-      //  height: var(--header-menu-list-height)
-      //}
-    }
-   
 
-  }` as typeof Menu;
+// @ts-ignore
+const StyledHeaderMenuSub = styled(Menu)<MenuProps>`
+  color: var(--color-text-third);
+  ul {
+
+    background: var(--color-pop-bg);
+    padding: 0;
+    //.layer-sub {
+    //  height: var(--header-menu-list-height)
+    //}
+  }
+` as typeof Menu;
 const StyledTabBtn = styled(MenuItem)<MenuItemProps<any>>`
   &.Mui-selected, &.Mui-selected.Mui-focusVisible {
     background: inherit;
@@ -160,18 +158,19 @@ const StyledTabBtn = styled(MenuItem)<MenuItemProps<any>>`
 ` as typeof MenuItem;
 
 
-const checkEnable = ({
-                         allowTrade,
-                         id
-                     }: { id: string, allowTrade?: any }): boolean => {
-    if (allowTrade?.order?.enable === false && orderDisableList.includes(id)) {
-        return true
-    } else if (allowTrade?.joinAmm?.enable === false && ammDisableList.includes(id)) {
-        return true
-    } else {
-        return false
-    }
-}
+// const checkEnable = ({
+//                          allowTrade,
+//                          id
+//                      }: { id: string, allowTrade?: any }): boolean => {
+//     if (allowTrade?.order?.enable === false && orderDisableList.includes(id)) {
+//         return true
+//     } else if (allowTrade?.joinAmm?.enable === false && ammDisableList.includes(id)) {
+//         return true
+//     } else {
+//         return false
+//     }
+// }
+
 
 export const HeadMenuItem = React.memo(React.forwardRef(<I extends BasicHeaderItem>({
                                                                                         className,
@@ -186,7 +185,7 @@ export const HeadMenuItem = React.memo(React.forwardRef(<I extends BasicHeaderIt
                                                                                     }: MenuItemLink<I>, ref: ForwardedRef<any>) => {
     const history = useHistory();
     return <StyledHeadMenuItem selected={selected}
-                               disabled={checkEnable({allowTrade, id: label.id}) || status === 'disabled'}
+                               disabled={ status === 'disabled'}
                                className={clsx([`layer-${layer}`, className])} ref={ref}
 
                                onClick={handleListKeyDown ? handleListKeyDown : () => {
@@ -223,7 +222,7 @@ export const HeaderMenuSub = React.memo(React.forwardRef(<I extends BasicHeaderI
                                                                                      }: HeadMenuType<I> & WithTranslation, ref: ForwardedRef<any>) => {
 
     const popupState = usePopupState({variant: 'popover', popupId: `popupId: 'tradeHeaderSubMenu'`});
-    return <>{checkEnable({allowTrade, id: label.id}) || status === 'disabled' ?
+    return <>{ status === 'disabled' ?
         <StyledTabBtn disabled={true}
                       selected={selected} key={label.id} className={className} ref={ref}>
             <Typography component={'span'} variant={'body1'} paddingRight={1} color={'inherit'}>
