@@ -1,25 +1,59 @@
 import React from 'react';
+import { css, Theme, useTheme } from '@emotion/react';
+import { useTranslation } from 'react-i18next';
+import store, { setLanguage } from './stores';
+import { Router, useLocation } from 'react-router-dom';
+import { GlobalStyles } from '@mui/material';
+import { globalCss } from './common-resources';
 // import logo from './logo.svg';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        {/*<img src={logo} className="App-logo" alt="logo" />*/}
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const ScrollToTop = () => {
+  const {pathname} = useLocation();
 
+  React.useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+const App = () => {
+  const theme: Theme = useTheme();
+  const {i18n: {language}} = useTranslation()
+  const storeLan = store.getState().settings.language
+
+
+  React.useEffect(() => {
+    if (storeLan !== language) {
+      store.dispatch(setLanguage(language));
+    }
+  }, [])
+
+  const {state} = useInit();
+
+
+  return <><GlobalStyles styles={css`
+      ${globalCss({theme})};
+
+      body {
+        ${theme.mode === 'dark' ? `
+            color: ${theme.colorBase.textPrimary};
+          ` : ``}
+      }
+
+      body:before {
+        ${theme.mode === 'dark' ? `
+            background: var(--color-global-bg);
+       ` : ''}
+      }
+    }`}/>
+
+    <Router>
+      <ScrollToTop/>
+      <RouterView state={state}/>
+    </Router>
+
+  </>
+
+
+}
 export default App;

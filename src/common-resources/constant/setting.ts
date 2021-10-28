@@ -16,3 +16,6 @@ export const RowConfig = {
 // export const FeeChargeOrderDefault = ['ETH','USDT','LRC','DAI','USDC'];
 export const IubendaID = 74969935;
 export const Region = ['Africa', 'Americas', 'Asia', 'Europe', 'Oceania']
+export const LAYOUT = {
+    HEADER_HEIGHT : 64,
+}
