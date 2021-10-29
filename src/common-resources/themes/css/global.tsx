@@ -156,7 +156,7 @@ export const globalCss = ({theme}: any) => css`
   }
 
   body {
-    display: flex;
+    //display: flex;
     width: 100%;
     position: relative;
     z-index: 1;

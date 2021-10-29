@@ -31,12 +31,19 @@ const BoxDetail = styled(Box)`
   }
 ` as typeof Box
 const BoxStyle = styled(Box)`
-  background: var(--color-global-bg);
-  column-count: 2;
-  column-gap: ${({theme}) => theme.unit * 3}px;
-  @media only screen and (max-width: 600px) {
-    column-count: 1;
+  .column{
+    column-count: 2;
+    column-gap: ${({theme}) => theme.unit * 3}px;
+    
   }
+  @media only screen and (max-width: 600px) {
+    .column{
+      column-count: 1;   
+    }
+    margin-left: 0;
+    padding-left: 0;
+  }
+ 
   img {
     object-fit: contain
   }
@@ -68,21 +75,22 @@ export const CountryDetail = withTranslation('common')(React.memo(({
                                                                        item,
                                                                        ...rest
                                                                    }: CountryCardDetail & WithTranslation) => {
-    return <>
-        <Grid item xs={1} md={6} lg={4}>
-            <BoxDetail display={'flex'} maxWidth={570} minWidth={400} margin={1} marginTop={-4} alignItems={'center'}
+    return  <Grid container spacing={3}  paddingBottom={3}  >
+
+        <Grid item xs={12} md={6} lg={4}>
+            <BoxDetail display={'flex'} maxWidth={570} minWidth={400}  alignItems={'center'}
                        justifyContent={'center'}>
                 <img src={item.flags?.svg} width={'100%'} height={'100%'}/>
             </BoxDetail>
         </Grid>
-        <Grid item xs={1} md={6} lg={8}>
-            <Box flex={1} marginLeft={2} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
-                <Box paddingX={3} display={'flex'} flexDirection={'column'}>
+        <Grid item xs={12} md={6} lg={8} >
+            <BoxStyle flex={1} marginLeft={2} paddingX={3} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
+                <Box  display={'flex'} flexDirection={'column'}>
                     <Typography
                         color={'textPrimary'}
                         variant={'h4'}
                         component={'h3'} marginY={3}>{item.name.common}</Typography>
-                    <BoxStyle>
+                    <Box className={'column'}>
                         <Typography color={'--color-text-primary'} component={'p'} display={'flex'} marginBottom={1}>
                             <Typography color={'textPrimary'}>{t('labelNativeName')}: </Typography>
                             <Typography color={'textSecondary'} paddingLeft={1}>{
@@ -121,11 +129,11 @@ export const CountryDetail = withTranslation('common')(React.memo(({
                                 item.languages && Reflect.ownKeys(item.languages).map((ele) => item.languages[ ele as string ]).join(',')}
                             </Typography>
                         </Typography>
-                    </BoxStyle>
+                    </Box>
                     <Box display={'flex'} flexDirection={'row'} alignItems={'center'} marginTop={2}>
                         <Typography color={'textPrimary'}>{t('labelBorderCountry')}: </Typography>
                         <Box display={'flex'} flexDirection={'row'} alignItems={'center'} marginLeft={2}>
-                            {item.borders.map((item, index) => {
+                            {item.borders?.length && item.borders.map((item, index) => {
                                 return <Typography key={item + index} marginLeft={2}><BtnBorders  simple={item}/></Typography>
                             })}
 
@@ -133,9 +141,9 @@ export const CountryDetail = withTranslation('common')(React.memo(({
                     </Box>
                 </Box>
                 <Box></Box>
-            </Box>
+            </BoxStyle>
         </Grid>
-    </>
+    </Grid>
 }))
 
 

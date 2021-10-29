@@ -17,17 +17,20 @@ export const DetailPage = withTranslation('common')(({t}:{} & WithTranslation)=>
     },[country])
 
 
-    return <Box flex={1} height={'100%'} width={'100%'}>
-        <Grid container marginY={3} flex={1} >
-            <Grid item xs={12}>
+    return <Box flex={1} >
+        {/*<Grid container marginY={3} flex={1} >*/}
+        {/*    <Grid item xs={12}>*/}
+        {/*        */}
+        {/*    </Grid>*/}
+            <Box marginY={3}>
                 <Button variant={'contained'} size={'medium'} color={'primary'}
                         onClick={()=>history.goBack()}
                 >{t('labelBack')}</Button>
-            </Grid>
-            <Grid item xs={12} marginTop={2}>
+            </Box>
+            <Box>
                 <CountryDetail item={countryItem}/>
-            </Grid>
-        </Grid>
+            </Box>
+        {/*</Grid>*/}
     </Box>
     
 })

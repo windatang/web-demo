@@ -6,7 +6,16 @@ import React from 'react';
 import * as _ from 'lodash'
 import { Country, useCountry } from '../stores';
 import { Region, RegionList } from '../common-resources';
+import styled from '@emotion/styled';
 
+
+const BoxStyle = styled(Box)`
+  @media only screen and (max-width: 900px) {
+    .select-region{
+      justify-content: flex-start;
+    }
+  }
+` as typeof Box
 export const MainPage = withTranslation('common')(({t}: & WithTranslation) => {
     const {countryList, region: regionMap} = useCountry();
     const [region, setRegion] = React.useState<Region | 'All'>('All');
@@ -32,8 +41,8 @@ export const MainPage = withTranslation('common')(({t}: & WithTranslation) => {
         handleFilterChange({searchValue: value, region})
     }, [handleFilterChange, region])
     // const [search ,setSearch] = React.useState('')
-    return <Box flex={1} display={'flex'} flexDirection={'column'} marginY={0}>
-        <Grid container spacing={3}  >
+    return <BoxStyle flex={1} display={'flex'} flexDirection={'column'} width={'100%'}  >
+        <Grid container spacing={3}  marginTop={3} >
             <Grid item xs={12} md={6} >
                 <Box maxWidth={450}>
                     <InputSearch fullWidth
@@ -41,7 +50,7 @@ export const MainPage = withTranslation('common')(({t}: & WithTranslation) => {
 
                 </Box>
             </Grid>
-            <Grid item xs={12} md={6}  justifyContent={'flex-end'} display={'flex'}>
+            <Grid  item xs={12} md={6}  className={'select-region'}  justifyContent={'flex-end'} display={'flex'}>
                 <Box maxWidth={120} minWidth={120}>
                     <FormControl fullWidth  >
                         {/*<InputLabel id="demo-simple-select-label">All</InputLabel>*/}
@@ -70,15 +79,17 @@ export const MainPage = withTranslation('common')(({t}: & WithTranslation) => {
         <Grid container spacing={2} marginY={2}>
             {countryViewList.map((item: Country, index: number) => {
                 return <Grid item xs={12} md={4} lg={3} key={item.name.common + index}>
-                    <CountryCard onDetail={
-                        () => {
-                            history.push(`/detail/${item.name.common}`)
-                        }
-                    } item={item}/>
+                   <Box margin={1}>
+                       <CountryCard onDetail={
+                           () => {
+                               history.push(`/detail/${item.name.common}`)
+                           }
+                       } item={item}/>
+                   </Box>
                 </Grid>
             })}
         </Grid>
 
 
-    </Box>
+    </BoxStyle>
 })
